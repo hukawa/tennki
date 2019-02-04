@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      var count = 0;
+
+      function retry(){
+        document.body.style.backgroundImage = "url('images/tennki.png')";
+        document.body.style.backgroundImage = "url('images/omikuji-bg.png')";
+        document.getElementById("select-page").style.display = "block";
+        document.getElementById("result-page").style.display = "none";
+      }
+
+      function play(){
+        count++;
+        var no = Math.floor(Math.random() * 5);
+        var image_name;
+        if(no == 0){
+          document.getElementById("result-img").src = "images/rain_ame.png";
+          document.getElementById("result-msg").innerHTML = "明日は雨でしょう";
+          document.getElementById("result-msg2").innerHTML = "運勢はまぁまぁ";
+        } else if(no == 1){
+          document.getElementById("result-img").src = "images/kumo_bg.png";
+          document.getElementById("result-msg").innerHTML = "明日は曇りでしょう";
+          document.getElementById("result-msg2").innerHTML = "運勢は微妙";
+        }else if(no ==2){
+          document.getElementById("result-img").src = "images/taiyou.png";
+          document.getElementById("result-msg").innerHTML = "明日は晴れでしょう";
+          document.getElementById("result-msg2").innerHTML = "運勢は普通";
+        }else if(no ==3){
+          document.getElementById("result-img").src = "images/arashi.png";
+          document.getElementById("result-msg").innerHTML = "明日は嵐でしょう";
+          document.getElementById("result-msg2").innerHTML = "運勢は最悪";
+        }else if(count % 20 == 0){
+          document.getElementById("result-img").src = "images/vaction_island.png";
+          document.getElementById("result-mug").innerHTML = "明日は楽園でしょう";
+          document.getElementById("result-msg2").innerHTML = "運勢は神";
+        }else{
+          document.getElementById("result-img").src = "images/fubuki.png";
+          document.getElementById("result-msg").innerHTML = "明日は吹雪でしょう";
+          document.getElementById("result-msg2").innerHTML = "運勢はない";
+        }
+
+        navigator.vibrate(1000);
+
+        alert("天気が出ました");
+        
+        document.getElementById("select-page").style.display = "none";
+        document.getElementById("result-page").style.display = "block";
+      }
+    </script>
+</head>
+<body>
+  <div id="select-page" style="display:block">
+	  <img src="images/tennki.png" id="omikuji">
+    <button id="playBtn" onclick="play()">天気を見てもらう</button>
+  </div>
+  <div id="result-page" style="display:none">
+    <h2 id="result-msg"></h2>
+    <h3 id="result-msg2"></h3>
+    <img id="result-img" src="">
+    <button id="playBtn" onclick="retry()">画面に戻る</button>
+  </div>
+</body>
+</html>
